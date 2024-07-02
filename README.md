@@ -102,7 +102,7 @@ By pressing the 'Poručivanje' (Ordering) button, we open the part related to
 creating an order. As already mentioned, the 'Poruči' (Order) button from the 
 previous window also brings us to the ordering section.
 
-![2 2 - Menu - Desserts](https://github.com/kdkrle/pizzeria_online/assets/59825527/2163bce8-0ae7-4279-8f5d-e26385c85704)
+![3 1 - Ordering](https://github.com/kdkrle/pizzeria_online/assets/59825527/e5647d14-ea6c-41c6-ac2f-4536d7f52cc2)
 
 _Picture 4: Ordering_
 
