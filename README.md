@@ -73,6 +73,10 @@ _Picture 1: Main Screen_
 By pressing the 'Meni' (Menu) button on the main screen, a new window opens 
 with a selection of items by category.
 
+![2 1 - Menu - Pizzas](https://github.com/kdkrle/pizzeria_online/assets/59825527/c291a881-e0f5-4cc6-95f9-5fc7c369faf5)
+
+_Picture 2: Menu - Opening_
+
 In the left part of the screen there are buttons for different categories 
 of items. These are: 'Pica' (Pizzas), 'Salate' (Salads), 'Sendviči' 
 (Sandwiches), 'Deserti' (Desserts) and 'Napici' (Drinks). By pressing a 
@@ -80,6 +84,10 @@ button, we get a list of items from that category that we can order.
 The tabular list consists of the name of the article, its composition and 
 prices. When opening the screen, the category 'Pizzas' is loaded as the 
 basic type of items offered.
+
+![2 2 - Menu - Desserts](https://github.com/kdkrle/pizzeria_online/assets/59825527/7148926c-05a7-4850-a01e-691993865734)
+
+_Picture 3: Menu - Selected (Desserts)_
 
 At the bottom of this screen there is a 'Poruči' (Order) button, which takes 
 us to the ordering section and an 'Izađi' (Exit) button which closes the 
@@ -93,6 +101,10 @@ one, which can also be accessed from the main screen.
 By pressing the 'Poručivanje' (Ordering) button, we open the part related to 
 creating an order. As already mentioned, the 'Poruči' (Order) button from the 
 previous window also brings us to the ordering section.
+
+![2 2 - Menu - Desserts](https://github.com/kdkrle/pizzeria_online/assets/59825527/2163bce8-0ae7-4279-8f5d-e26385c85704)
+
+_Picture 4: Ordering_
 
 On the new screen that opens, below the title, there are short explanations 
 about ordering, i.e. about the time of delivery, the method of inserting 
@@ -117,6 +129,10 @@ middle of the screen. By pressing the 'Ubaci' (Insert) button, a small window
 opens which, in addition to the name of the article, allows us to increase the 
 quantity of the selected article.
 
+![3 2 - Article Amount](https://github.com/kdkrle/pizzeria_online/assets/59825527/940d8758-6b43-4fc7-9142-62f7df17564e)
+
+_Picture 5: Article Amount_
+
 Below the basket itself, the total price of the articles added to the 
 basket is displayed.
 
@@ -130,6 +146,10 @@ button, we open a new screen where the creation of the order is completed.
 A new window allows us to choose the payment method. Payment can be made in 
 cash or by card when picking up the order or immediately online, also with 
 the help of a payment card.
+
+![3 3 - Realization](https://github.com/kdkrle/pizzeria_online/assets/59825527/c790027f-c83c-41b5-9fea-682580cd4c94)
+
+_Picture 6: Realization_
 
 In the left part of the screen there is a payment option. Below it are the 
 details of the order in the form of the name of the articles and their 
@@ -188,11 +208,19 @@ for the order and when the payment is executed. Apart from these
 notifications, there is only one button 'Zatvori' (Close) which, as the name 
 suggests, closes this window.
 
+![4 - Payment Methods](https://github.com/kdkrle/pizzeria_online/assets/59825527/de0d7a57-d3b4-4f8e-b833-0a98852d99a5)
+
+_Picture 7: Payment Methods_
+
 ## 5.5. Order tracking
 
 Pressing the 'Praćenje porudžbine' (Order tracking) button on the main 
 screen opens a new window that requires you to enter the code of the order 
 you want to track. Only the one who knows the code can continue.
+
+![5 1 - Order tracking (Login)](https://github.com/kdkrle/pizzeria_online/assets/59825527/1b894511-4124-46f1-94b0-d8cdea1b06f9)
+
+_Picture 8: Order Tracking (Login)_
 
 When the correct code is entered, a new window opens in which, under the 
 title, we can see the status of the order. Possible statuses are: 'Kreirana' 
@@ -200,6 +228,10 @@ title, we can see the status of the order. Possible statuses are: 'Kreirana'
 (Delivered). Below the status is the code of the order we want to track. 
 This is followed by details about the ordered articles and their quantities, 
 and finally the price of the order is highlighted.
+
+![5 2 - Order tracking (Details)](https://github.com/kdkrle/pizzeria_online/assets/59825527/322e940e-9fc1-42f7-b250-e6e791307616)
+
+_Picture 9: Order Tracking (Details)_
 
 The 'Zatvori' (Close) button closes this window.
 
@@ -212,6 +244,10 @@ so. Since this project has the role of showing the capabilities of the
 application, it should be said that the password is 'MP-pice', in order to 
 get an insight into that part of the program as well.
 
+![6 1 - Changes - Login](https://github.com/kdkrle/pizzeria_online/assets/59825527/742a69a8-46e1-42cd-a8be-a8ad07aaa411)
+
+_Picture 10: Changes (Login)_
+
 After entering the correct password and confirming it, a new window opens 
 in which we can make two types of changes.
 
@@ -221,6 +257,10 @@ In the left part of the new window, it is possible to change the status of
 the order. The drop-down menu for selecting a new status and the 'Promeni' 
 (Change) button, which makes the change, are unavailable until the order 
 code is selected.
+
+![6 2 - Changes](https://github.com/kdkrle/pizzeria_online/assets/59825527/5df4785e-7e2d-4647-8ff3-acc00bce7d4c)
+
+_Picture 11: Changes (Changing Status and Adding Articles)_
 
 A list of all order codes can be found in the drop-down menu above. When 
 selecting any password, the status selection drop-down menu and the change 
@@ -254,19 +294,53 @@ The 'Zatvori' (Close) button closes this window.
 
 ## 5.6 Reports
 
+![7 - Reports](https://github.com/kdkrle/pizzeria_online/assets/59825527/d8c989b5-58df-4ede-b494-4844a754a190)
+
+_Picture 12: Reports_
+
 Finally, the 'Izveštaji' (Reports) button, from the main screen, takes us to a 
 new window where we have 8 choices. The first choice only gives us a 
 notification about the total income of the pizzeria, in a separate window. 
 Other options are graphical displays according to the described criteria.
 
+![7 1 - Income Report](https://github.com/kdkrle/pizzeria_online/assets/59825527/3b0d281a-bc81-494a-b36a-e013810ed90a)
+
+_Picture 13: Income Report_
+
 The second and third options show the top 5 and top 20 best-selling articles.
+
+![7 2 - Best Selling  (Top 5)](https://github.com/kdkrle/pizzeria_online/assets/59825527/7a233c84-cd1a-4f9f-ab41-c7048dd39008)
+
+_Picture 14: Best Selling (Top 5)_
+
+![7 3 - Best Selling  (Top 20)](https://github.com/kdkrle/pizzeria_online/assets/59825527/ceb0ef93-0808-4b7e-96eb-bd3ed03f5b6d)
+
+_Picture 15: Best Selling (Top 20)_
 
 The fourth option shows the percentage income for the top 5 articles, which 
 are the best in that category, along with the percentage income of all other 
 articles combined.
 
+![7 4 - Percentage Income](https://github.com/kdkrle/pizzeria_online/assets/59825527/ddbdefa8-2608-4cfa-a126-1e597af61397)
+
+_Picture 16: Percentage Income_
+
 The fifth and sixth choices give us 5 orders each with income values are
 the biggest and the smallest.
 
+![7 5 - Highest Income Orders](https://github.com/kdkrle/pizzeria_online/assets/59825527/b29e4c44-ef0b-454c-82aa-5c6f066f7076)
+
+_Picture 17: Highest Icome_
+
+![7 6 - Lowest Income Orders](https://github.com/kdkrle/pizzeria_online/assets/59825527/4632a01f-8ceb-47ba-89c7-6508a712d81c)
+
+_Picture 18: Lowest Income_
+
 The last two options give us an insight into the 10 most expensive and 10 
 cheapest articles.
+
+![7 7 - Most Expensive Articles](https://github.com/kdkrle/pizzeria_online/assets/59825527/06f7ee49-2893-449c-8fc4-cf66aaa6ca49)
+_Picture 19: Most Expensive Articles_
+
+![7 8 - Cheapest Articles](https://github.com/kdkrle/pizzeria_online/assets/59825527/2c072692-1caa-49aa-9353-4e1ba8084af8)
+_Picture 20: Cheapest Articles_
