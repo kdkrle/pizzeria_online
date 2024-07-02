@@ -64,6 +64,10 @@ for selecting an action in the application. Each button has a short
 explanation next to it, except for the 'Zatvori' (Close) button at the 
 bottom of the screen, which is used to close the application.
 
+![1 - Main Screen](https://github.com/kdkrle/pizzeria_online/assets/59825527/cc6c0bb1-8b2c-4886-80e3-a92c4114303d)
+
+_Picture 1: Main Screen_
+
 ## 5.2 Menu
 
 By pressing the 'Meni' (Menu) button on the main screen, a new window opens 
