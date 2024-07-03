@@ -61,7 +61,7 @@ Tables:
 
 The main screen consists of the name of the pizzeria, an image and buttons 
 for selecting an action in the application. Each button has a short 
-explanation next to it, except for the 'Zatvori' (Close) button at the 
+explanation next to itself, except for the 'Zatvori' (Close) button at the 
 bottom of the screen, which is used to close the application.
 
 ![1 - Main Screen](https://github.com/kdkrle/pizzeria_online/assets/59825527/cc6c0bb1-8b2c-4886-80e3-a92c4114303d)
@@ -108,7 +108,7 @@ _Picture 4: Ordering_
 
 On the new screen that opens, below the title, there are short explanations 
 about ordering, i.e. about the time of delivery, the method of inserting 
-articles into the basket and deleting them from it, as well as about the 
+articles into the cart and deleting them from it, as well as about the 
 letters at the end of the name of pizzas, which indicate the size of its 
 diameter.
 
@@ -120,26 +120,27 @@ the left.
 In the middle part of the screen we have the name, composition and price of 
 the articles from the selected category. On the right side is the cart in 
 which the articles and their quantity that we want to order are inserted. 
-At the bottom of the screen there is a button to add an article to the basket, 
-a button to delete from the basket, a button to complete the order and a 
-button to close this screen.
+At the bottom of the screen there is a button to add an article to the cart, 
+a button to delete the content from the cart, a button to complete the 
+order and a button to close this screen.
 
 In order for an article to be added to the cart, it must be marked in the 
-middle of the screen. By pressing the 'Ubaci' (Insert) button, a small window 
-opens which, in addition to the name of the article, allows us to increase the 
-quantity of the selected article.
+middle of the screen. By pressing the 'Ubaci' (Insert) button, there opens a 
+small window which, in addition to the name of the article, allows us to 
+increase the quantity of the selected article.
 
 ![3 2 - Article Amount](https://github.com/kdkrle/pizzeria_online/assets/59825527/940d8758-6b43-4fc7-9142-62f7df17564e)
 
 _Picture 5: Article Amount_
 
-Below the basket itself, the total price of the articles added to the 
-basket is displayed.
+Below the cart itself, the total price of the articles added to the cart is 
+displayed.
 
-If we are not satisfied with what is in the cart, we can delete individual 
-articles by marking them and pressing the 'Izbriši' (Delete) button. If we 
-are satisfied with the contents of the cart, by pressing the 'Poruči' (Order) 
-button, we open a new screen where the creation of the order is completed.
+If we are not satisfied with the content of the cart, we can delete 
+individual articles by marking them and pressing the 'Izbriši' (Delete) 
+button. If we are satisfied with the content of the cart, by pressing the 
+'Poruči' (Order) button, we open a new screen where the creation of the 
+order is completed.
 
 #### 5.3.2 Choice of payment and entry of necessary data
 
@@ -151,9 +152,9 @@ the help of a payment card.
 
 _Picture 6: Realization_
 
-In the left part of the screen there is a payment option. Below it are the 
-details of the order in the form of the name of the articles and their 
-quantity, while below those details is the total price of the order.
+In the left part of the screen there is a payment option. Below it there 
+are the details of the order in the form of the name of the articles and 
+their quantity, while below those details is the total price of the order.
 
 The right part of the screen is provided for entering the necessary data. 
 At the top, there are fields for entering the delivery address and a 
@@ -165,12 +166,12 @@ the order.
 Below all that, there are input fields for online payment. They are 
 unavailable until online payment is selected on the left side of the screen.
 In these fields, the name and surname of the payer must be entered, which 
-must match the number of the card from which the payment is made. 
-Immediately follows the field used to enter exactly that bank account 
-number. As additional insurance, the entry of a PIN known to the account 
-user is used, which digits are not visible when entering. If all three 
-values agree and there is enough money in the account to pay for the order, 
-it is possible to complete the transaction.
+must match the number of the card the payment is made from. Right next to 
+it follows the field used to enter exactly that bank account number. As 
+additional insurance, the entry of a PIN known to the account user is used, 
+which digits are not visible when entering. If all three values agree and 
+there is enough money in the account to pay for the order, it is possible 
+to complete the transaction.
 
 **NOTE**: Here it would be best to insert some of the existing APIs that 
 enable real transactions. However, they are mostly commercial. In addition, 
@@ -187,11 +188,11 @@ functions and features of the application.
 
 The button 'Realizuj' (Realize) serves to complete the creation of the order.
 
-If the order is rejected, a notification will appear about what went wrong. 
-On the other hand, if it is accepted, this screen closes, and a greeting 
-screen opens with a notification about the successfully created order, 
-which, in addition to the notification and greeting, contains the order 
-code, which is used to track its status.
+If the order is rejected, there will appear a notification about what went 
+wrong. On the other hand, if it is accepted, this screen closes, and a 
+greeting screen opens with a notification about the successfully created 
+order, which, in addition to the notification and greeting, contains the 
+order code, which is used to track its status.
 
 Finally, since the order is successfully created, the relevant data is 
 inserted into all the tables. In the 'artikli' (articles) table, the 
@@ -216,13 +217,13 @@ _Picture 7: Payment Methods_
 
 Pressing the 'Praćenje porudžbine' (Order tracking) button on the main 
 screen opens a new window that requires you to enter the code of the order 
-you want to track. Only the one who knows the code can continue.
+you want to track. Only the one who knows the code can proceed.
 
 ![5 1 - Order tracking (Login)](https://github.com/kdkrle/pizzeria_online/assets/59825527/1b894511-4124-46f1-94b0-d8cdea1b06f9)
 
 _Picture 8: Order Tracking (Login)_
 
-When the correct code is entered, a new window opens in which, under the 
+When the correct code is entered, a new window opens in which, below the 
 title, we can see the status of the order. Possible statuses are: 'Kreirana' 
 (Created), 'U pripremi' (Preparing), 'Poslata' (Sent) and 'Isporučena' 
 (Delivered). Below the status is the code of the order we want to track. 
@@ -238,11 +239,11 @@ The 'Zatvori' (Close) button closes this window.
 ## 5.6 Changes
 
 Pressing the 'Izmene' (Changes) button on the main form opens a password entry 
-window. This window is necessary, because the changes made should not be 
-accessed by all users, but only by those persons who are authorized to do 
-so. Since this project has the role of showing the capabilities of the 
-application, it should be said that the password is 'MP-pice', in order to 
-get an insight into that part of the program as well.
+window. This window is necessary, because the changes that are made should 
+not be accessed by all users, but only by those persons who are authorized 
+to do so. Since this project has the role of showing the capabilities of 
+the application, it should be said that the password is 'MP-pice', in order 
+to get an insight into that part of the program as well.
 
 ![6 1 - Changes - Login](https://github.com/kdkrle/pizzeria_online/assets/59825527/742a69a8-46e1-42cd-a8be-a8ad07aaa411)
 
@@ -277,16 +278,16 @@ is clear that the latter serves to quickly gain insight into what urgently
 needs to be added.
 
 Each of these selections offers a list of items according to their amount 
-in stock. The selection of an articles from the list is made in the following 
+in stock. The selection of an article from the list is made in the following 
 drop-down menu. After selecting an article, its current amount in stock is 
 shown - under the text 'Items in stock:'.
 
-How many items are added to the balance is entered in the Spinbox at the 
-bottom. If we are satisfied with the entered number, by pressing the 'Dodaj' 
-(Add) button we can add the entered quantity of the selected article in 
-stock.
+The quantity of the items added to the balance is entered in the Spinbox at 
+the bottom. If we are satisfied with the entered number, by pressing the 
+'Dodaj' (Add) button we can add the entered quantity of the selected 
+article to stock.
 
-After adding in stock, the 'artikli' (articles) table and the list of 
+After adding that to stock, the 'artikli' (articles) table and the list of 
 articles are updated if the selected item exceeds the default values of 20 
 and 10.
 
@@ -300,8 +301,9 @@ _Picture 12: Reports_
 
 Finally, the 'Izveštaji' (Reports) button, from the main screen, takes us to a 
 new window where we have 8 choices. The first choice only gives us a 
-notification about the total income of the pizzeria, in a separate window. 
-Other options are graphical displays according to the described criteria.
+notification about the total income of the pizzeria, and that appears in a 
+separate window. Other options are graphical displays according to the 
+described criteria.
 
 ![7 1 - Income Report](https://github.com/kdkrle/pizzeria_online/assets/59825527/3b0d281a-bc81-494a-b36a-e013810ed90a)
 
@@ -325,8 +327,8 @@ articles combined.
 
 _Picture 16: Percentage Income_
 
-The fifth and sixth choices give us 5 orders each with income values are
-the biggest and the smallest.
+The fifth and sixth choices give us 5 orders each with the biggest and the 
+smallest income values.
 
 ![7 5 - Highest Income Orders](https://github.com/kdkrle/pizzeria_online/assets/59825527/b29e4c44-ef0b-454c-82aa-5c6f066f7076)
 
