@@ -1,3 +1,4 @@
+# Name, account, PIN, funds list
 IME_RACUN_PIN_SREDSTVA = [
     ["Aleksandar Nikolić", "285-1869902420677-22", "2816", 61211.40],
     ["Petar Popović", "275-6375775855451-40", "6389", 87138.80],
@@ -31,5 +32,6 @@ IME_RACUN_PIN_SREDSTVA = [
     ["Ljubo Glavaš", "340-0004143645389-09", "4894", 51332.90]
 ]
 
+# Bank codes
 BROJEVI_BANAKA = ["125", "160", "170", "200", "205", "220", "240", "250",
                   "265", "275", "285", "310", "325", "330", "340", "355"]
