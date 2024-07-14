@@ -12,7 +12,7 @@ root.title("Picerija \"Monty Python\"")
 root.geometry("610x870")
 root.resizable(0, 0)
 
-# Stil za velika slova na glavnom ekranu.
+# Large buttons style
 style_btn = ttk.Style()
 style_btn.configure("velika.TButton", font=("Calibri", 18, "bold"))
 style_btn.map(
@@ -21,20 +21,20 @@ style_btn.map(
                 ("!disabled", "royalblue")]
 )
 
-# Stil za okvir na glavnom ekranu.
+# Frame style
 style_frm = ttk.Style()
 style_frm.configure("okvir.TFrame", background="gainsboro")
 
-# Stil za Radiobutton.
+# Radiobutton style
 rb_style = ttk.Style()
 rb_style.configure("sb.TRadiobutton", font=("Calibri", 14))
 
-# Stil za Radiobutton sa sivom pozadinom.
+# Radiobutton style with grey background
 rb_gray = ttk.Style()
 rb_gray.configure("gray.TRadiobutton", font=("Calibri", 14),
                   background="gainsboro")
 
-# Stil za LabelFrame.
+# LabelFrame style
 style_lf = ttk.Style()
 style_lf.configure("lblfrm.TLabelframe")
 style_lf.configure("lblfrm.TLabelframe.Label", foreground="navy",
@@ -42,7 +42,7 @@ style_lf.configure("lblfrm.TLabelframe.Label", foreground="navy",
 
 
 def len_char_limit(inp):
-    """Ograničavanje broja i vrste karaktera (samo brojevi)."""
+    """Limiting the number and type of characters (digits only)."""
     
     if inp.isdigit() and len(inp) <= 10:
         return True
@@ -53,12 +53,12 @@ def len_char_limit(inp):
 
 
 def validacija_unosa(unos):
-    """Validacija numeričkog unosa u spinbox polja."""
+    """Numerical input validation in Spinbox fields."""
     return unos.isdigit()
 
 
 def sirina_visina(widget):
-    """Dobijanje širine i visine nekog od elemenata."""
+    """Getting the width and height of a widget."""
     
     widget.update()
     sirina = widget.winfo_width()
@@ -68,10 +68,10 @@ def sirina_visina(widget):
 
 
 def artikli_sastavi_cene(kategorija="Pice"):
-    """Dobijanje lista artikala, njihovog sastava i njihovih cena po
-    kategorijama."""
+    """Obtaining a list of items, their composition and their prices by
+    items' category."""
     
-    # Rečnik s kategorijama u koje smo podelili artikle.
+    # Dictionary of article categories
     kategorije_dict = {
         "Pice": ["pica"],
         "Salate": ["salata"],
@@ -90,7 +90,7 @@ def artikli_sastavi_cene(kategorija="Pice"):
     lista_sastava = []
     lista_cena = []
     for i in range(len(lista_artikala)):
-        # Dobijanje celog teksta za u koloni 'sastav'.
+        # Getting the full text in the 'sastav' column
         sastav_artikla = "\n".join(artikli.artikli_df.sastav[
                                          artikli.artikli_df.naziv ==
                                          lista_artikala[i]])
@@ -105,17 +105,17 @@ def artikli_sastavi_cene(kategorija="Pice"):
 
 
 def prelom(text, length=60):
-    """Prelamanje dugačkog teksta kako bi ceo mogao da bude vidljiv."""
+    """Wrapping long text so that the whole text can be seen."""
     
     return '\n'.join(textwrap.wrap(text, length))
 
 
 def generisanje_sifre():
-    """Generisanje šifre porudžbine, uz proveru da li takva već postoji."""
+    """Generating the order code, checking if it already exists."""
     
     sifre_lst = porudzbine.porudzbine_df.sifra.to_list()
     
-    # Generisanje šifre.
+    # Code generating
     sifra = ""
     for i in range(10):
         cifra = randint(0, 9)
@@ -128,7 +128,7 @@ def generisanje_sifre():
 
 
 def zatvaranje():
-    """Otvaranje messagebox prozora za potvrdu zatvaranja aplikacije."""
+    """Messagebox to confirm closing the application."""
     pitanje = messagebox.askyesno(
         title="Zatvaranje aplikacije",
         message="Da li želite da izađete iz aplikacije?"
@@ -138,7 +138,7 @@ def zatvaranje():
 
 
 def prikaz_artikala():
-    """Prikazivanje svih artikala po kategorijama (kolona 'vrsta')."""
+    """Display of all articles by category (column 'vrsta')."""
     
     meni_tl = Toplevel(root)
     meni_tl.title("Meni picerije \"Monty Python\"")
@@ -148,20 +148,19 @@ def prikaz_artikala():
     meni_tl.grab_set()
     
     def uklanjanje_elemenata():
-        """Uklanjanje svih elemenata sa okvira koji je na kanvasa i
-        vraćanje na početnu poziciju."""
+        """Removing all elements from the frame that is on the canvas and
+        returning to the initial position."""
         
         for widget in meni_frm.winfo_children():
             widget.destroy()
         meni_canvas.yview_moveto(0.0)
 
     def izbor_prikaza(kategorija="Pice"):
-        """U zavisnosti od pritiska na dugme u sidebaru prikazuje se samo ta
-         vrsta artikala."""
+        """Displaying a certain type of articles only."""
         
         liste = artikli_sastavi_cene(kategorija)
 
-        # Kreiranje elemenata na formi.
+        # Creating elements on the form
         meni_naslov = ttk.Label(
             meni_frm,
             text="Meni picerije \"Monty Python\"",
@@ -224,8 +223,8 @@ def prikaz_artikala():
                                  pady=30, sticky=E)
     
     def podesavanje_skrolbara():
-        """Postavljanje skrolbara i oblasti za skrolovanje za prikaz nove
-        kategorije artikala."""
+        """Setting up a scrollbar and scrolling area to display a new
+        category of articles."""
         
         sirina_okvira = sirina_visina(meni_frm)[0]
         visina_okvira = sirina_visina(meni_frm)[1]
@@ -244,7 +243,7 @@ def prikaz_artikala():
             meni_canvas.unbind_all("<MouseWheel>")
             meni_sb.place_forget()
 
-    # Sidebar.
+    # Sidebar
     sidebar_style = ttk.Style()
     sidebar_style.configure("sb.TFrame", background="orange")
 
@@ -260,7 +259,7 @@ def prikaz_artikala():
     )
     sidebar_lbl.grid(column=0, row=0, padx=50, pady=30)
 
-    # Dugmad za prikaz vrste artikla na sidebaru.
+    # Buttons to display the article type on the sidebar
     sb_pice_btn = ttk.Button(
         sidebar_frm,
         text="Pice",
@@ -317,7 +316,7 @@ def prikaz_artikala():
     )
     sb_napici_btn.grid(column=0, row=5, padx=30, pady=5, sticky=N)
 
-    # Canvas.
+    # Canvas
     meni_canvas = Canvas(meni_tl)
     meni_canvas.pack(expand=True, fill=BOTH)
     
@@ -327,14 +326,14 @@ def prikaz_artikala():
 
     izbor_prikaza()
 
-    # Scrollbar i povezivanje sa skrolovanjem na mišu:
+    # Scrollbar and linking to mouse scrolling
     meni_sb = ttk.Scrollbar(
         meni_canvas,
         orient="vertical",
         command=meni_canvas.yview
     )
 
-    # Širina i visina okvira
+    # Frame width and height
     okvir = sirina_visina(meni_frm)
 
     meni_canvas.bind_all(
@@ -350,11 +349,12 @@ def prikaz_artikala():
 
 
 def porucivanje():
-    """Kreiranje forma za poručivanje pojedinačnih artikala, prebacivanje u
-    korpu i konačno prihvatanje izbora."""
+    """Creating a form for ordering individual articles, transferring them to
+    the cart and finally accepting the selection."""
     
     def popunjavanje_tabele(kategorija="Pice"):
-        """Popunjavanje Treeview tabele vrednostima za obeleženu kategoriju."""
+        """Filling out the Treeview table with values for the selected
+        category."""
         
         for item in lista_artikala_tv.get_children():
             lista_artikala_tv.delete(item)
@@ -374,7 +374,7 @@ def porucivanje():
         lista_artikala_tv.update()
 
     def ubaci_u_korpu():
-        """Ubacivanje izabranog artikla u korpu."""
+        """Adding the selected article to the cart."""
         
         id_artikla = lista_artikala_tv.focus()
         
@@ -389,7 +389,7 @@ def porucivanje():
             artikal_i_cena = oznaceni_artikal.get("values")[0], \
                 oznaceni_artikal.get("values")[2]
         
-            # Toplevel za ubacivanje artikla i njegove količine.
+            # Toplevel for inserting the article and its quantity
             dodaj_tl = Toplevel(poruci_tl)
             dodaj_tl.title("Dodaj u korpu")
             dodaj_tl.resizable(0, 0)
@@ -433,17 +433,17 @@ def porucivanje():
             )
             dodaj_btn.grid(column=1, row=2, padx=10, pady=10, sticky=E)
             
-        # Stavljanje artikla u korpu i prikazivanje ukupne cene.
+        # Adding the article to the cart and displaying the total price
         def stavljanje_u_korpu():
             komada = spin_var.get()
             stavka = artikal_i_cena[0]
             cena = artikal_i_cena[1]
 
-            # Količina traženog artikla iz baze podataka.
+            # The quantity of the requested article from the database
             kolicina_artikla = int(artikli.artikli_df.kolicina[
                 artikli.artikli_df.naziv == stavka].to_string(index=False))
             
-            # Provera da li ima dovoljno artikala.
+            # Checking if there are enough articles
             if komada > kolicina_artikla:
                 messagebox.showinfo(
                     title="Nema na stanju",
@@ -459,7 +459,7 @@ def porucivanje():
                 ukupno_iznos_lbl.configure(text=f"{nova_vrednost} din.")
     
     def brisanje_iz_korpe():
-        """Brisanje stavke iz korpe i korekcija ukupne cene."""
+        """Deleting an item from the cart and total price correcting."""
 
         oznacena_stavka = korpa_tv.selection()
         
@@ -476,7 +476,7 @@ def porucivanje():
                         "izabrati neku stavku iz tabele."
             )
         else:
-            # Korekcija ukupne cene.
+            # Total price correcting
             komada_stavka = korpa_tv.item(oznacena_stavka).get("values")
             cena_stavke = int(artikli.artikli_df.cena[
                 artikli.artikli_df.naziv ==
@@ -486,15 +486,14 @@ def porucivanje():
             korigovano = int(ukupno_iznos_lbl.cget("text")[:-5]) - umanjenje
             ukupno_iznos_lbl.configure(text=f"{korigovano} din.")
             
-            # Brisanje stavke
+            # Item deleting
             korpa_tv.delete(oznacena_stavka)
     
     def izbor_placanja():
-        """Forma za izbor plaćanja, uz detalja o porudžbini."""
+        """Payment selection form, with order details."""
         
         def online_placanje():
-            """Otključvanje i zaključavanje polja potrebnih za online
-            plaćanje."""
+            """Disabling and enabling fields required for online payment."""
             if placanje_var.get() == "3":
                 ime_ent.configure(state="enabled")
                 racun_ent.configure(state="enabled")
@@ -507,16 +506,16 @@ def porucivanje():
                 generisi_btn.configure(state="disabled")
         
         def generisanje_podataka():
-            """Generisanje podataka iz fajla 'podaci', koji se upisuju u
-            polja za online plaćanje."""
+            """Generating data from the 'podaci' file, which are entered into
+            the fields for online payment."""
             
-            # Podaci za upis.
+            # Data to insert
             podaci = choice(IME_RACUN_PIN_SREDSTVA)
             gen_ime = podaci[0]
             gen_racun = podaci[1]
             gen_pin = podaci[2]
             
-            # Ubacivanje podataka u polja za online plaćanje.
+            # Inserting data into online payment fields.
             ime_ent.delete(0, END)
             ime_ent.insert(0, gen_ime)
             racun_ent.delete(0, END)
@@ -526,10 +525,10 @@ def porucivanje():
             
         
         def realizacija_porudzbine():
-            """Zaključivanje i kreiranje porudžbine, provera da li su sva
-            polja popunjena i ubacivanje podataka u tabele."""
+            """Finalizing and creating an order, checking whether all fields
+            are filled in and entering data into tables."""
 
-            # Provera popunjenosti polja.
+            # Check that fields are filled
             if not adresa_ent.get():
                 messagebox.showinfo(
                     title="Nedostaje adresa",
@@ -588,7 +587,8 @@ def porucivanje():
                                 message="Uneseni PIN nije ispravan."
                             )
                         
-                    # Provera da uplatilac ima dovoljno sredstava na računu.
+                    # Checking that the payer has sufficient funds in the
+                    # account
                     for i in range(len(IME_RACUN_PIN_SREDSTVA)):
                         if ime_ent.get() == IME_RACUN_PIN_SREDSTVA[i][0]:
                             sredstva_na_racunu = IME_RACUN_PIN_SREDSTVA[i][3]
@@ -602,7 +602,7 @@ def porucivanje():
                         )
                         return
                 
-                # Skidanje artikala sa stanja.
+                # Removing articles from inventory
                 for i in range(broj_stavki):
                     kolicina_iz_tabele = int(artikli.artikli_df.kolicina[
                         artikli.artikli_df.naziv == spisak_stavki[i][
@@ -613,33 +613,34 @@ def porucivanje():
                         i][1])
                         
                 
-                # Ubacivanje podataka u tabele.
-                # Tabela 'transakcije'.
+                # Inserting data into tables
+                # 'transakcije' table
                 if ispravni_podaci and placanje_var.get() == "3":
                     transakcije.transakcije_ubacivanje_podataka(
                         ime_ent, racun_ent, ukupna_cena, sifra_porudzbine)
                 
-                # Tabela 'porudzbine'.
+                # 'porudzbine' table
                 porudzbine.porudzbine_ubacivanje_podataka(
                     sifra_porudzbine, adresa_ent, telefon_ent, placanje_var,
                     izbor_rb, ukupna_cena)
                 
-                # Tabela 'stavke'.
+                # 'stavke' table
                 stavke.stavke_ubacivanje_podataka(sifra_porudzbine,
                                                   spisak_stavki)
                 
-                # Zatvaranje forme za unos podataka potrebnih za porudžbinu.
+                # Closing the form for entering the data required for the
+                # order.
                 izbor_tl.destroy()
                 
-                # Brisanje stavki iz korpe.
+                # Deleting items from the cart
                 for i in korpa_tv.get_children():
                     korpa_tv.delete(i)
                 poruci_tl.update()
                 
-                # Vraćanje vrednosti ukupnog iznosa na nulu.
+                # Reset the total value to zero
                 ukupno_iznos_lbl.configure(text="0 din.")
                 
-                # Obaveštenje o kreiranoj porudžbini.
+                # Notification of created order
                 drugi_deo_poruke = f"Šifra za praćenje porudžbine je:\n" \
                                    f"{sifra_porudzbine}"
                 treci_deo_poruke = "Dostava uskoro stiže.\n\nPRIJATNO!"
@@ -707,11 +708,11 @@ def porucivanje():
             )
             izbor_placanja_podnaslov.pack(ipadx=50, pady=(0, 10), fill=X)
             
-            # Frame za sve podatke.
+            # Frame for all data
             info_frm = ttk.Frame(izbor_tl)
             info_frm.pack(expand=True, fill=BOTH)
             
-            # Frame za izbor plaćanja i detalje porudžbine.
+            # Frames for payment selection and order details
             left_frm = ttk.Frame(info_frm)
             left_frm.pack(side=LEFT, padx=20, pady=20)
             
@@ -817,7 +818,7 @@ def porucivanje():
                 anchor=W)
             porudzbina_ukupno.pack(expand=True, fill=X, padx=10, pady=10)
     
-            # Frame za isporuku i plaćanje.
+            # Frame for delivery and payment
             right_frm = ttk.Frame(info_frm)
             right_frm.pack(side=LEFT, padx=20, pady=20)
             
@@ -867,7 +868,7 @@ def porucivanje():
                                 show="*")
             pin_ent.pack(padx=10, pady=(0, 10), anchor=W)
 
-            # Dugme koje generiše podatke za transakciju.
+            # Button that generates transaction data
             generisi_btn = ttk.Button(
                 placanje_frm,
                 text="Generiši",
@@ -877,7 +878,7 @@ def porucivanje():
             generisi_btn.pack(padx=10, pady=10, anchor=E)
 
 
-            # Frame za dugmad.
+            # Frame for buttons
             bottom_frm = ttk.Frame(izbor_tl)
             bottom_frm.pack(expand=True, fill=BOTH, padx=20, pady=20)
             bottom_frm.columnconfigure(0, weight=1)
@@ -905,7 +906,7 @@ def porucivanje():
     poruci_tl.geometry("1050x920")
     poruci_tl.grab_set()
 
-    # Naslov i informacije o poručivanju.
+    # Title and ordering information
     poruci_naslov = ttk.Label(
         poruci_tl,
         text="Picerija \"Monty Python\"",
@@ -960,7 +961,7 @@ def porucivanje():
     )
     velicina_lbl.grid(column=1, row=4, sticky=EW, pady=5, padx=(30, 0))
 
-    # Frame za izbor artikala.
+    # Frames for selecting articles
     artikli_frm = ttk.Frame(poruci_tl)
     artikli_frm.grid(column=0, row=5, pady=20, sticky=NSEW)
     
@@ -988,7 +989,7 @@ def porucivanje():
         ).grid(row=(int(vrednost)), padx=(50, 10), pady=5, sticky=NW)
     kategorija_var.set("1")
     
-    # Frame za prikaz treeview stavki i naslova odeljka.
+    # Frame for displaying treeview items and the section title
     treeview_frm = ttk.Frame(poruci_tl)
     treeview_frm.grid(column=1, row=5, pady=20, sticky=NSEW)
 
@@ -1005,7 +1006,7 @@ def porucivanje():
     ttk.Style().configure("tv_style.Treeview", rowheight=45)
     kolone = ["artikal", "sastav", "cena"]
 
-    # Poseban okvir, tabela (treeview) i skrolbar za nju.
+    # Inner frame, table (treeview) and scrollbar for it
     table_frm = ttk.Frame(treeview_frm)
     table_frm.grid(row=1, padx=10)
     
@@ -1043,10 +1044,10 @@ def porucivanje():
     )
     tree_scroll.pack(side=RIGHT, fill=Y)
     
-    # Ubacivanje početnih podataka u treeview.
+    # Inserting the initial data into the treeview
     popunjavanje_tabele()
 
-    # Frame za korpu.
+    # Cart frame
     korpa_frm = ttk.Frame(poruci_tl)
     korpa_frm.grid(column=2, row=5, padx=0, pady=20, sticky=NSEW)
     
@@ -1060,7 +1061,7 @@ def porucivanje():
     )
     korpa_lbl.grid(column=0, row=0, ipadx=20, ipady=5, pady=(0, 20), sticky=EW)
 
-    # Frame za spinbox i stavke.
+    # Frame for Spinbox and items
     stavke_frm = ttk.Frame(korpa_frm)
     stavke_frm.grid(column=0, row=1, sticky=NSEW)
     
@@ -1081,7 +1082,7 @@ def porucivanje():
     
     korpa_tv.pack(expand=True, fill=BOTH)
 
-    # Frame za ispisivanje ukupne cene artikala u korpi.
+    # Frame for displaying the total price of articles in the cart
     cena_frm = ttk.Frame(korpa_frm)
     cena_frm.grid(column=0, row=2, padx=5, sticky="sew")
     cena_frm.grid_columnconfigure((0, 1), weight=1)
@@ -1096,8 +1097,8 @@ def porucivanje():
     )
     ukupno_iznos_lbl.grid(column=1, row=0, padx=5, sticky=E)
     
-    # Dugmad za ubacivanje artikala u korpu, prihvatanje porudžbine i
-    # zatvaranje prozora.
+    # Buttons for adding items to the cart, accepting the order and closing
+    # the window.
     por_ubaci_btn = ttk.Button(
         poruci_tl,
         text="Ubaci",
@@ -1131,7 +1132,7 @@ def porucivanje():
 
 
 def nacini_placanja():
-    """Osnovne informacije o načinima plaćanja."""
+    """Basic information about payment methods."""
     
     nacini_tl = Toplevel(root)
     nacini_tl.title("Načini plaćanja")
@@ -1140,7 +1141,7 @@ def nacini_placanja():
     nacini_tl.geometry("700x500")
     nacini_tl.grab_set()
     
-    # Naslov.
+    # Title
     nacini_glavni_naslov = ttk.Label(
         nacini_tl,
         text="Picerija \"Monty Python\"",
@@ -1231,10 +1232,10 @@ def nacini_placanja():
 
 
 def pracenje_porudzbine():
-    """Praćenje statusa porudžbine pomoću njene šifre."""
+    """Tracking the status of the order using its code."""
     
     def pracenje_prikaz():
-        """Prikazivanje statusa i detalja porudžbine."""
+        """Displaying order status and details."""
         
         sve_sifre = porudzbine.porudzbine_df.sifra.to_list()
         unesena_sifra = unos_sifre_ent.get()
@@ -1250,10 +1251,10 @@ def pracenje_porudzbine():
                 message="Ne postoji porudžbina sa unetom šifrom."
             )
         else:
-            # Zatvaranje prethodnog prozora.
+            # Close the previous window
             pracenje_tl.destroy()
             
-            # Dobijanje detalja porudžbine.
+            # Getting order details
             pracenje_stavke = stavke.stavke_df.stavka[
                 stavke.stavke_df.sifra == unesena_sifra].to_list()
             pracenje_komada = stavke.stavke_df.komada[
@@ -1262,14 +1263,14 @@ def pracenje_porudzbine():
                 porudzbine.porudzbine_df.sifra == unesena_sifra].to_string(
                 index=False)
             
-            # Kreiranje novog prozora.
+            # New window creating
             pracenje_detalji_tl = Toplevel(root)
             pracenje_detalji_tl.title("Status i detalji porudžbine")
             pracenje_detalji_tl.attributes("-topmost", "true")
             pracenje_detalji_tl.resizable(0, 0)
             pracenje_detalji_tl.grab_set()
             
-            # Naziv picerije i naslov prozora
+            # The name of the pizzeria and the title of the window
             pracenje_naziv = ttk.Label(
                 pracenje_detalji_tl,
                 text="Picerija \"Monty Python\"",
@@ -1290,7 +1291,7 @@ def pracenje_porudzbine():
             )
             pracenje_naslov.grid(row=1, columnspan=2, sticky=EW, pady=(0, 20),
                                  ipadx=50)
-            # Status i šifra porudžbine.
+            # Order status and code
             ttk.Label(
                 pracenje_detalji_tl,
                 text="STATUS PORUDŽBINE:",
@@ -1321,7 +1322,7 @@ def pracenje_porudzbine():
                 anchor=CENTER
             ).grid(row=5, columnspan=2, pady=(0, 10), sticky=EW)
 
-            # Detalji porudžbine.
+            # Order details
             ttk.Label(
                 pracenje_detalji_tl,
                 text="PORUČENO:",
@@ -1358,7 +1359,7 @@ def pracenje_porudzbine():
                     anchor=W
                 ).grid(column=1, row=8+i, padx=(30, 50), sticky=EW)
             
-            # Ukupna cena.
+            # Total price
             ukupna_cena_porudzbine = porudzbine.porudzbine_df.ukupno[
                 porudzbine.porudzbine_df.sifra == unesena_sifra].to_string(
                 index=False)
@@ -1428,15 +1429,15 @@ def pracenje_porudzbine():
 
 
 def izmene():
-    """Menjanje statusa porudžbine i dodavanje artikala na stanje."""
+    """Changing order status and adding articles in stock."""
     
     def return_key_event(event):
-        """Potvrda pritiskom na taster 'Enter' na formi za lozinku."""
+        """Confirm by pressing the 'Enter' key on the password form."""
         
         unos_izmena()
         
     def spisak_artikala(combo, radio_var, broj_komada, spin_var):
-        """Dobijanje spiska artikala u zavinosti od radiobutton izbora."""
+        """Getting a list of items depending on the radiobutton selection."""
         
         combo.set("")
         broj_komada.configure(text="-")
@@ -1456,17 +1457,17 @@ def izmene():
         combo["values"] = spisak
     
     def unos_izmena():
-        """Otvaranje prozora za izmene nakon potvrđene lozinke."""
+        """Opening the window for changes after confirming the password."""
 
         def combo_statusa_dostupan(event):
-            """Status porudžbine postaje dostupan i pokazuje vrednost za
-            izabranu porudžbinu."""
+            """The order status becomes available and shows the value for
+            the selected order."""
             
-            # Status dostupan.
+            # Status available
             status_porudzbine_combo.configure(state="readonly")
             status_promeni_btn.configure(state="normal")
             
-            # Dobijanje trenutnog statusa.
+            # Getting current status
             izabrana_sifra = sifra_porudzbine_combo.get()
             trenutni_status = porudzbine.porudzbine_df.status[
                 porudzbine.porudzbine_df.sifra == izabrana_sifra
@@ -1475,7 +1476,7 @@ def izmene():
             status_porudzbine_combo.set(trenutni_status)
         
         def menjanje_statusa():
-            """Dodeljivanje novog statusa."""
+            """Assigning a new status."""
             
             combo_sifra = sifra_porudzbine_combo.get()
             
@@ -1500,8 +1501,7 @@ def izmene():
                 )
             
         def prikaz_kolicine_artikla(event):
-            """Upisivanje koliko komada na stanju neki artikal trenutno
-            ima."""
+            """Entering how many pieces an article currently has in stock."""
             
             komada_na_stanju = artikli.artikli_df.kolicina[
                 artikli.artikli_df.naziv == biranje_artikla_cb.get()
@@ -1510,7 +1510,8 @@ def izmene():
             komada_kolicina_lbl.configure(text=komada_na_stanju)
         
         def uvecanje_stanja_artikla():
-            """Uvecanje kolicine artikla za broj u spinboxu."""
+            """Increase the quantity of the article by the number in the
+            Spinbox."""
             
             uvecanje = dodaj_var.get()
             
@@ -1532,18 +1533,18 @@ def izmene():
                 
                 novo_stanje = uvecanje + int(trenutno_stanje)
                 
-                # Upisivanje novog stanja u tabelu 'artikli'.
+                # Inserting a new balance to the 'artikli' table
                 artikli.azuriranje_kolicine(novo_stanje,
                                             biranje_artikla_cb.get())
                 
-                # Prikaz novog stanja na formi.
+                # New state displaying on the form
                 novo_stanje_iz_tabele = artikli.artikli_df.kolicina[
                     artikli.artikli_df.naziv == biranje_artikla_cb.get()
                 ].to_string(index=False)
                 komada_kolicina_lbl.configure(text=novo_stanje_iz_tabele)
                 
-                # Obaveštenje o uspešno izvršenom dodavanju količine
-                # artikala na stanje.
+                # Notification about the successful addition of the quantity
+                # of articles to the stock.
                 messagebox.showinfo(
                     title="Uspešno dodavanje",
                     message=f"Novo stanje artikla \""
@@ -1551,8 +1552,8 @@ def izmene():
                             f"{novo_stanje_iz_tabele}."
                 )
                 
-                # Ažuriranje combobox liste, ukoliko novo stanje nije manje od
-                # 20 ili 10.
+                # Update the Combobox list, if the new balance is not less
+                # than 20 or 10.
                 if dodavanje_var.get() == "2" and \
                         int(novo_stanje_iz_tabele) >= 20:
                     biranje_artikla_cb.set("")
@@ -1589,10 +1590,10 @@ def izmene():
                 message="Niste uneli ispravnu lozinku."
             )
         else:
-            # Zatvaranje prozora za unos lozinke.
+            # Closing the password entry window
             izmene_lozinka_tl.destroy()
             
-            # Otvaranje prozora za izmene.
+            # Opening the window for changing
             izmene_tl = Toplevel(root)
             izmene_tl.title("Promena statusa i dodavnje artikala")
             izmene_tl.resizable(0, 0)
@@ -1619,7 +1620,7 @@ def izmene():
             izmene_naslov.grid(row=1, columnspan=2, sticky=EW, pady=(0, 40),
                                ipadx=50)
             
-            # LabelFrame za menjanje statusa porudžbine.
+            # LabelFrame for changing order status
             izmene_status_frm = ttk.LabelFrame(
                 izmene_tl,
                 text="Menjanje statusa",
@@ -1677,7 +1678,7 @@ def izmene():
             )
             status_promeni_btn.pack(expand=True, padx=30, pady=30, anchor=SE)
             
-            # LabelFrame za dodavanje artikala.
+            # LabelFrame for adding articles
             izmene_artikli_frm = ttk.LabelFrame(
                 izmene_tl,
                 text="Dodavanje artikala",
@@ -1785,8 +1786,8 @@ def izmene():
             izmene_zatvori_btn.grid(column=1, row=3, padx=50, pady=20,
                                     sticky=E)
     
-    # Pristupna lozinka (potrebna, jer pristup izmenama ne treba da imaju
-    # svi korisnici, već samo oni koji su za njih ovlašćeni).
+    # Access password (required, because not all users should have access to
+    # changes, but only those who are authorized to do so)
     lozinka = "MP-pice"
     
     izmene_lozinka_tl = Toplevel(root)
@@ -1827,10 +1828,10 @@ def izmene():
 
 
 def izvestaji():
-    """Razni izveštaji koji daju uvid u podatke baze podataka."""
+    """Various reports that provide insight into database data."""
     
     def izbor_izvestaja(var_get):
-        """Biranje izveštaja koji želimo da dobijemo i njegov prikaz."""
+        """Selecting the report we want to view and its display."""
         
         if var_get == "1":
             cene_svih_porudzbina = porudzbine.porudzbine_df.ukupno.to_list()
@@ -2003,18 +2004,18 @@ glavni_naslov_lbl2 = ttk.Label(
 )
 glavni_naslov_lbl2.grid(column=1, row=0, sticky=W)
 
-#Učitavanje slike.
+# Loading image
 image = Image.open("pics/Monty-Python-bw.jpg")
 
-#Prilagođavanje veličine slike.
+# Adjusting the image size
 image_resize = image.resize((600, 337))
 mpbw = ImageTk.PhotoImage(image_resize)
 
-#Postavljanje slike.
+# Image placement
 monty_python_pic = ttk.Label(root, image=mpbw)
 monty_python_pic.grid(column=0, columnspan=2, row=1)
 
-#Okvir za glavne opcije - za svaku postoji dugme.
+# Frame for main options - there is a button for each
 glavne_opcije_frm = ttk.Frame(
     root,
     style="okvir.TFrame",
