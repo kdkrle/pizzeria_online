@@ -5,7 +5,7 @@ from collections import Counter
 
 
 class Artikli:
-    """Manipulacija podacima iz tabele 'artikli'."""
+    """Data manipulation from the 'artikli' table."""
     
     def __init__(self):
         self.con = pg.connect(
@@ -18,12 +18,12 @@ class Artikli:
         self.artikli_df = None
     
     def artikli_ucitavanje(self):
-        """Osvežavanje podataka tabele 'artikli'."""
+        """Refreshing the 'artikli' table data."""
         
         self.artikli_df = pd.read_sql_query("SELECT * FROM artikli", self.con)
     
     def azuriranje_kolicine(self, nova_kolicina, naziv_stavke):
-        """Ažuriranje količine artikala."""
+        """Updating item quantities."""
 
         cursor = self.con.cursor()
 
@@ -40,7 +40,8 @@ class Artikli:
         self.artikli_ucitavanje()
     
     def visina_cena_artikala(self, cene_silazno=True):
-        """Prikaz artikala s najvišim i najnižim pojedinačnim cenama."""
+        """Display of articles with the highest and lowest individual
+        prices."""
 
         sortirano_najvise = self.artikli_df.sort_values(by=['cena'],
             ascending=False).head(10)
@@ -66,7 +67,7 @@ class Artikli:
             deo_teksta_naslov = "najnižim"
             ylabel_tekst = "Najniže cene"
 
-        # Grafik.
+        # Chart
         plt.figure(figsize=(10, 7))
 
         plt.plot(artikli_lista, cene_lista, marker="o", color=boja_linija,
@@ -85,7 +86,7 @@ class Artikli:
 
 
 class Porudzbine:
-    """Manipulacija podacima iz tabele 'porudzbine'."""
+    """Data manipulation from the 'porudzbine' table."""
 
     def __init__(self):
         self.con = pg.connect(
@@ -98,7 +99,7 @@ class Porudzbine:
         self.porudzbine_df = None
 
     def porudzbine_ucitavanje(self):
-        """Osvežavanje podataka tabele 'porudzbine'."""
+        """Refreshing the 'porudzbine' table data."""
     
         self.porudzbine_df = pd.read_sql_query("SELECT * FROM porudzbine",
                                                self.con)
@@ -106,7 +107,7 @@ class Porudzbine:
     def porudzbine_ubacivanje_podataka(self, sifra_por, entry_adresa,
                                        entry_telefon, var_placanje, rb_dict,
                                        cena):
-        """Ubacivanje podataka u tabelu 'porudzbine'."""
+        """Inserting data in the 'porudzbine' table."""
     
         cursor = self.con.cursor()
         
@@ -129,7 +130,7 @@ class Porudzbine:
         self.porudzbine_ucitavanje()
     
     def promena_statusa(self, sifra_cb_vrednost, status_cb_vrednost):
-        """Promena starog statusa u novi."""
+        """Changing the old status to a new one."""
 
         cursor = self.con.cursor()
         
@@ -147,8 +148,8 @@ class Porudzbine:
         self.porudzbine_ucitavanje()
     
     def visina_cena_porudzbina(self, visina_cene=True):
-        """Najveće i najniže visine cena pojedinih porudžbina i njihov
-        grafički prikaz."""
+        """The highest and lowest prices of individual orders and their
+        graphic display."""
         
         sortirano_najvise = self.porudzbine_df.sort_values(
             by=['ukupno'], ascending=False).head()
@@ -170,7 +171,7 @@ class Porudzbine:
             deo_teksta_naslov = "najnižim"
             ylabel_tekst = "Najniže cene porudžbina"
         
-        # Grafik.
+        # Chart
         plt.figure(figsize=(10, 7))
         
         plt.bar(sifre_lista, cene_lista, color=boja_stubaca)
@@ -189,8 +190,8 @@ class Porudzbine:
 
 
 class Stavke:
-    """Manipulacija podacima iz tabele 'stavke', koja daje detalje o
-    pojedinačnim porudžbinama."""
+    """Data manipulation from the 'stavke' table, which gives details of
+    individual orders."""
     
     def __init__(self):
         self.con = pg.connect(
@@ -203,12 +204,12 @@ class Stavke:
         self.stavke_df = None
     
     def stavke_ucitavanje(self):
-        """Osvežavanje podataka tabele 'stavke'."""
+        """Refreshing the 'stavke' table data."""
         
         self.stavke_df = pd.read_sql_query("SELECT * FROM stavke", self.con)
 
     def stavke_ubacivanje_podataka(self, sifra_por, stavke_spisak):
-        """Ubacivanje podataka u tabelu 'stavke'."""
+        """Inserting date in the 'stavke' table."""
     
         cursor = self.con.cursor()
         
@@ -228,13 +229,13 @@ class Stavke:
         self.stavke_ucitavanje()
     
     def najprodavaniji_artikli(self, broj_prvih_artikala):
-        """Grafički prikaz artikala koji se najviše prodaju."""
+        """Graphic representation of the best-selling items."""
         
-        # Skup svih artikla koji su prodati.
+        # All items that have been sold
         prodavani_artikli = set(self.stavke_df.stavka.to_list())
         
-        # Dobijanje koliko puta su prodati pojedinačni artikli i sortiranje
-        # po tom kriterijumu.
+        # Getting how many times individual items have been sold and sorting
+        # by that criteria
         prodavani_dict = {}
         for artikal in prodavani_artikli:
             prodato_komada = self.stavke_df.komada[
@@ -247,7 +248,8 @@ class Stavke:
             prodavani_dict[artikal] = ukupno_prodato
         sortirano_po_prodaji = dict(Counter(prodavani_dict).most_common())
         
-        # Lista najprodavanijih artikala i lista koliko puta su oni prodati.
+        # A list of the best-selling items and a list of how many times they
+        # have been sold
         artikli_lst = []
         komada_lst = []
         for key, value in sortirano_po_prodaji.items():
@@ -256,7 +258,7 @@ class Stavke:
         prvih_x_artikala = artikli_lst[:broj_prvih_artikala]
         prvih_x_komada = komada_lst[:broj_prvih_artikala]
         
-        # Grafik.
+        # Chart
         plt.figure(figsize=(10, 7))
         
         plt.barh(prvih_x_artikala, prvih_x_komada, color="darkred")
@@ -273,12 +275,13 @@ class Stavke:
         plt.show()
     
     def artikal_najveci_prihod(self):
-        """Grafički prikaz artikala koji je obezbedio najveći prihod."""
+        """Graphic representation of the items that provided the highest
+        income"""
 
-        # Skup svih artikla koji su prodati.
+        # All items that have been sold
         prodavani_artikli = set(self.stavke_df.stavka.to_list())
 
-        # Dobijanje koliko puta su prodati pojedinačni artikli.
+        # Getting the number of individual items sold
         prodavani_dict = {}
         for artikal in prodavani_artikli:
             prodato_komada = self.stavke_df.komada[
@@ -290,7 +293,7 @@ class Stavke:
 
             prodavani_dict[artikal] = ukupno_prodato
         
-        # Dobijanje koliko je prihod svakog prodatog artikla.
+        # Getting income from each item sold
         artikli_prihod_dict = {}
         for key, value in prodavani_dict.items():
             cena_artikla = int(artikli.artikli_df.cena[
@@ -301,8 +304,7 @@ class Stavke:
 
         sortirano_po_prihodu = dict(Counter(artikli_prihod_dict).most_common())
         
-        # Lista artikala koji su ostvarili najveći prihod i lista njihovog
-        # prihoda.
+        # List of the highest income items and list of their income
         naziv_lst = []
         prihod_lst = []
         for key, value in sortirano_po_prihodu.items():
@@ -312,14 +314,14 @@ class Stavke:
         prvi_artikli = naziv_lst[:5]
         prvi_prihodi = prihod_lst[:5]
         
-        # Iznos svih ostalih prihoda zajedno (bez prvih 5 najvećih).
+        # Amount of all other income combined (excluding the top 5)
         lista_ostalih_prihoda = prihod_lst[5:]
         
         ostali_prihodi_zajedno = 0
         for prihod in lista_ostalih_prihoda:
             ostali_prihodi_zajedno += prihod
         
-        # Grafik.
+        # Chart
         prvi_artikli.append("Svi ostali")
         prvi_prihodi.append(ostali_prihodi_zajedno)
 
@@ -346,7 +348,7 @@ class Stavke:
 
 
 class Transakcije:
-    """Manipulacija podacima iz tabele 'transakcije'."""
+    """Data manipulation from the 'transakcije' table."""
     
     def __init__(self):
         self.con = pg.connect(
@@ -359,14 +361,14 @@ class Transakcije:
         self.transakcije_df = None
     
     def transakcije_ucitavanje(self):
-        """Osvežavanje podataka tabele 'transakcije'."""
+        """Refreshing the 'transakcije' table data."""
         
         self.transakcije_df = pd.read_sql_query("SELECT * FROM transakcije",
                                                 self.con)
     
     def transakcije_ubacivanje_podataka(self, entry_ime, entry_racun,
                                         ukupno, sifra_por):
-        """Ubacivanje podataka u tabelu transakcije."""
+        """Inserting data in the 'transakcije' table."""
         
         cursor = self.con.cursor()
 
